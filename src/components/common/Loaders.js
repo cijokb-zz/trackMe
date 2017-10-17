@@ -1,4 +1,3 @@
-
 import React from 'react';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import PropTypes from 'prop-types';
