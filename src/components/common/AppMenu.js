@@ -8,7 +8,7 @@ const AppMenu = () => (
     <div>
         <IconMenu
             iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-            anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'left', vertical: 'top'}}
             iconStyle={{color: 'rgb(255, 255,255)'}}
         >
