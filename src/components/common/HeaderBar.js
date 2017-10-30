@@ -1,12 +1,11 @@
-import AppBar from 'material-ui/AppBar';
+import Header from './Header';
+import HamburgerDrawer from './HamburgerDrawer';
 import React from 'react';
-import AppMenu from './AppMenu';
-const HeaderBar = () => (
-    <AppBar
-        title="TrackMe"
-        style={{backgroundColor: '#3F51B5'}}
-        iconElementRight={<AppMenu/>}
-    />
-);
 
-export default HeaderBar;
+const Headerbar = () => (
+    <div>
+        <Header/>
+        <HamburgerDrawer/>
+    </div>
+);
+export default Headerbar;

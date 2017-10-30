@@ -18,8 +18,8 @@ const style = {
 const Loaders = ({currentStatus}) => (
     <div style={style.container}>
         <RefreshIndicator
-            size={40}
-            left={10}
+            size={50}
+            left={-15}
             top={0}
             status={currentStatus}
             style={style.refresh}
