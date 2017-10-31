@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import database from '../firebase/firebaseConfig';
-import HomePage from '../components/HomePage';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as beginAjaxCall from '../actions/ajaxCallStatusActions';
-
-
+import Loaders from '../components/common/Loaders';
+import HeaderBar from '../components/common/HeaderBar';
 
 class App extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     // this.state = {
-    //     //     isLoading: false
-    //     // };
-    // }
     componentDidMount() {
         const users = database.ref('users');
         users.on('value', snap => {
@@ -27,9 +19,8 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <MuiThemeProvider>
-                    <HomePage appState={this.props.isLoading}/>
-                </MuiThemeProvider>
+                <HeaderBar/>
+                <Loaders currentStatus={this.props.isLoading ? 'loading' : 'hide'}/>
             </div>
 
         );
