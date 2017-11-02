@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import * as beginAjaxCall from '../actions/ajaxCallStatusActions';
 import Loaders from '../components/common/Loaders';
 import HeaderBar from '../components/common/HeaderBar';
+import Footer from '../components/common/Footer';
 
 class App extends Component {
     componentDidMount() {
@@ -21,6 +22,7 @@ class App extends Component {
             <div className="App">
                 <HeaderBar/>
                 <Loaders currentStatus={this.props.isLoading ? 'loading' : 'hide'}/>
+                <Footer/>
             </div>
 
         );
@@ -30,7 +32,6 @@ class App extends Component {
 //export default App;
 
 function mapStateToProps (state, ownProps) {
-    debugger;
     return {
         isLoading: state.isLoading
     };
@@ -38,7 +39,6 @@ function mapStateToProps (state, ownProps) {
 
 //advanced way using bindActionCreator
 function mapDispatchToProps (dispatch) {
-    debugger;
     return {
         actions: bindActionCreators(beginAjaxCall, dispatch)
     };
