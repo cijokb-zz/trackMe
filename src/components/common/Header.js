@@ -5,7 +5,7 @@ import AppMenu from './AppMenu';
 const Header = () => (
     <AppBar
         title="TrackMe"
-        style={{backgroundColor: '#3F51B5'}}
+        style={{backgroundColor: '#3F51B5',textAlign:'center'}}
         iconElementRight={<AppMenu/>}
         //onLeftIconButtonTouchTap={}
     />

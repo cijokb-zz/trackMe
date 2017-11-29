@@ -6,7 +6,7 @@ import initialState from './initialState';
 
 export default function ajaxCallStatusReducer (state = initialState.isLoading, action) {
     switch (action.type) {
-    case types.BEGIN_AJAX_CALL:
+    case types.BEGIN_ASYNC_CALL:
         return action.callStatus;
     default :
         return state;

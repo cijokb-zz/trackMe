@@ -1,46 +1,73 @@
 import React, { Component } from 'react';
 import './App.css';
-import database from '../firebase/firebaseConfig';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as beginAjaxCall from '../actions/ajaxCallStatusActions';
+//actions
+import {beginAsyncCall} from '../actions/ajaxCallStatusActions';
+import {authInitialized, fireBaseInitError} from '../actions/fireBaseActions';
+
+//presentational components
 import Loaders from '../components/common/Loaders';
 import HeaderBar from '../components/common/HeaderBar';
 import Footer from '../components/common/Footer';
 
 class App extends Component {
+    componentWillReceiveProps(props) {
+    //console.log("componentWillReceiveProps",props);
+    // if(!this.props.appInitError.success) {
+    //   this.props.router.push('/error');
+    // }
+    }
+    componentDidUpdate() {
+        //console.log("componentDidUpdate");
+    }
     componentDidMount() {
-        const users = database.ref('users');
-        users.on('value', snap => {
-            console.log('data loaded');
-            this.props.actions.beginAjaxCall(false);
-            console.log(snap.val());
-        });
+        //console.log("componentDidMount");
+    }
+
+    componentWillMount() {
+        //console.log("componentWillMount");
+        // const me = this;
+        // FirebaseApi.initAuth().then(
+        //     user => {
+        //         me.props.actions.authInitialized(user);
+        //     }
+        // ).catch(
+        //     error => {
+        //         me.props.actions.beginAjaxCall(false);
+        //         me.props.actions.appInitError(error);
+        //         console.error('error while initializing Firebase Auth'); // eslint-disable-line no-console
+        //         console.error(error); // eslint-disable-line no-console
+        //     });
     }
     render() {
+        //console.log('render');
         return (
             <div className="App">
-                <HeaderBar/>
+                <HeaderBar isLogged={this.props.isLogged}/>
                 <Loaders currentStatus={this.props.isLoading ? 'loading' : 'hide'}/>
+                {this.props.children}
                 <Footer/>
             </div>
-
         );
     }
 }
 
-//export default App;
-
 function mapStateToProps (state, ownProps) {
     return {
-        isLoading: state.isLoading
+        isLoading: state.isLoading,
+        isLogged: state.fireBase.auth.isLogged,
+        appInitError: state.fireBase.init
     };
 }
 
-//advanced way using bindActionCreator
 function mapDispatchToProps (dispatch) {
     return {
-        actions: bindActionCreators(beginAjaxCall, dispatch)
+        actions: {
+            beginAjaxCall: bindActionCreators(beginAsyncCall, dispatch),
+            authInitialized: bindActionCreators(authInitialized, dispatch),
+            appInitError: bindActionCreators(fireBaseInitError, dispatch)
+        }
     };
 }
 

@@ -21,8 +21,10 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
     "enzyme": "^3.1.0",
     "jest-cli": "^21.2.1",
+    "react-router": "^3.2.0",
     "redux-devtools": "^3.4.0",
     "redux-devtools-dock-monitor": "^1.1.2",
     "redux-devtools-extension": "^2.13.2",
