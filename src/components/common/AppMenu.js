@@ -14,7 +14,7 @@ const AppMenu = () => (
         >
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Send feedback" />
-            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Settings" onClick={function(){window.alert('s')}}/>
             <MenuItem primaryText="Help" />
             <MenuItem primaryText="Sign out" />
         </IconMenu>

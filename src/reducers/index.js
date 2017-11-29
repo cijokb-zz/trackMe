@@ -4,11 +4,16 @@
 //import {combineReducers} from 'redux-immutable';
 import isLoading from './ajaxCallStatusReducer';
 import users from './createUserReducer';
+import fireBase from './fireBaseReducer';
+import appStatus from './appStatusReducer';
+
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-    isLoading,
-    users
+    fireBase,
+    appStatus,
+    isLoading
+
 });
 
 export default rootReducer;

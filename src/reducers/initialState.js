@@ -7,8 +7,22 @@
 // });
 
 const initialState = {
-    isLoading: true,
-    users: []
+    fireBase: {
+        init: {
+            success: null,
+            errorCode: '',
+            errorDetails: ''
+        },
+        auth: {
+            isLogged: false,
+            currentUserUID: null,
+            initialized: false
+        },
+    },
+    appStatus: {
+
+    },
+    isLoading: false
 };
 
 export default initialState;
