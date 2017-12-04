@@ -18,7 +18,7 @@ class Login extends Component {
     }
 
     signInWithGoogleAuthProvider() {
-        window.alert('signInWithGoogle');
+        //window.alert('signInWithGoogle');
         this.props.actions.signInWithGoogleAuthProvider();
     }
     render() {
