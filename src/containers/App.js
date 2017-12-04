@@ -8,12 +8,15 @@ import {authInitialized, fireBaseInitError} from '../actions/fireBaseActions';
 
 //presentational components
 import Loaders from '../components/common/Loaders';
-import HeaderBar from '../components/common/HeaderBar';
+//import HeaderBar from '../components/common/HeaderBar';
 import Footer from '../components/common/Footer';
+
+import Header from '../containers/Header';
+import SnackBar from '../containers/SnackBar';
 
 class App extends Component {
     componentWillReceiveProps(props) {
-    //console.log("componentWillReceiveProps",props);
+        console.log('componentWillReceiveProps', props);
     // if(!this.props.appInitError.success) {
     //   this.props.router.push('/error');
     // }
@@ -41,12 +44,13 @@ class App extends Component {
         //     });
     }
     render() {
-        //console.log('render');
+        console.log('render- App.js');
         return (
             <div className="App">
-                <HeaderBar isLogged={this.props.isLogged}/>
+                <Header/>
                 <Loaders currentStatus={this.props.isLoading ? 'loading' : 'hide'}/>
                 {this.props.children}
+                <SnackBar/>
                 <Footer/>
             </div>
         );
@@ -56,8 +60,8 @@ class App extends Component {
 function mapStateToProps (state, ownProps) {
     return {
         isLoading: state.isLoading,
-        isLogged: state.fireBase.auth.isLogged,
-        appInitError: state.fireBase.init
+        appInitError: state.fireBase.init,
+        userInfo: state.fireBase.auth
     };
 }
 

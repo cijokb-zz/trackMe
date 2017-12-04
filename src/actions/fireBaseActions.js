@@ -2,7 +2,7 @@
 
 import FirebaseApi from '../api/firebase';
 import * as types from './actionTypes';
-import {beginAsyncCall} from './ajaxCallStatusActions';
+import {beginAsyncCall, showingSnackBar} from './ajaxCallStatusActions';
 import { browserHistory } from 'react-router';
 
 export function fireBaseInitDone(initStatus) {
@@ -38,9 +38,10 @@ export function authInitializedDone() {
     };
 }
 
-export function authLoggedInSuccess(userUID) {
+export function authLoggedInSuccess(user) {
+    browserHistory.push('/');
     return {
-        type: types.AUTH_LOGGED_IN_SUCCESS, userUID
+        type: types.AUTH_LOGGED_IN_SUCCESS, user
     };
 }
 
@@ -55,7 +56,7 @@ export function authInitialized(user) {
     return (dispatch) => {
         dispatch(authInitializedDone());
         if (user) {
-            dispatch(authLoggedIn(user.uid));
+            dispatch(authLoggedIn(user));
         } else {
             //show the login screen
             dispatch(authLoggedOutSuccess());
@@ -65,10 +66,12 @@ export function authInitialized(user) {
 }
 
 
-export function authLoggedIn(userUID) {
+export function authLoggedIn(user) {
     return (dispatch) => {
         dispatch(beginAsyncCall(false));
-        dispatch(authLoggedInSuccess(userUID));
+
+        dispatch(authLoggedInSuccess(user));
+        dispatch(showingSnackBar('Login successfull'));
         // dispatch(beginAsyncCall());
         // firebaseApi.GetChildAddedByKeyOnce('/users', userUID)
         //     .then(
@@ -108,7 +111,7 @@ export function signInWithGoogleAuthProvider(user = 'cijo.kb@gmail.com') {
             .then(
                 user => {
                     dispatch(beginAsyncCall(false));
-                    dispatch(authLoggedIn(user.uid));
+                    dispatch(authLoggedIn(user));
                 })
             .catch(error => {
                 dispatch(beginAsyncCall(false));
@@ -119,14 +122,13 @@ export function signInWithGoogleAuthProvider(user = 'cijo.kb@gmail.com') {
 }
 
 export function signOut() {
-    return (dispatch) => {
-        FirebaseApi.authSignOut().then(() => {
-            dispatch(beginAsyncCall(false));
-            dispatch(authLoggedOutSuccess());
-        }).catch((error) => {
-            dispatch(beginAsyncCall(false));
-            // @TODO better error handling
-            throw (error);
-        });
-    };
+    return (dispatch) => FirebaseApi.authSignOut().then(() => {
+        dispatch(beginAsyncCall(false));
+        dispatch(authLoggedOutSuccess());
+        dispatch(showingSnackBar('Logout successfull'));
+    }).catch((error) => {
+        dispatch(beginAsyncCall(false));
+        // @TODO better error handling
+        throw (error);
+    });
 }

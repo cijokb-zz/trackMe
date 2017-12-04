@@ -16,13 +16,17 @@ const initialState = {
         auth: {
             isLogged: false,
             currentUserUID: null,
-            initialized: false
+            initialized: false,
+            photoURL: null,
+            displayName: null,
+            email: null
         },
     },
     appStatus: {
 
     },
-    isLoading: false
+    isLoading: false,
+    snackBarMsg: ''
 };
 
 export default initialState;
