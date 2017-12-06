@@ -7,7 +7,8 @@ const style = {
 
         left: '50%',
         top: '50%',
-        position: 'fixed'
+        position: 'fixed',
+        zIndex: 10000
     },
     refresh: {
         display: 'inline-block',

@@ -19,13 +19,17 @@ export default class FireBaseApi {
         return firebase.auth().signOut();
     }
 
-    static signInWithEmailAndPassword(user) {
-        return firebase.auth().signInWithEmailAndPassword(user.email, user.password);
+    static signInWithEmailAndPassword(email, password) {
+        return firebase.auth().signInWithEmailAndPassword(email, password);
     }
 
-    static signInWithGoogleAuthProvider(user) {
+    static signInWithGoogleAuthProvider() {
         const provider = new firebase.auth.GoogleAuthProvider();
         return firebase.auth().signInWithRedirect(provider);
+    }
+
+    static createUserWithEmailAndPassword(email, password) {
+        return firebase.auth().createUserWithEmailAndPassword(email, password);
     }
 }
 

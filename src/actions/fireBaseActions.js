@@ -41,7 +41,21 @@ export function authInitializedDone() {
 export function authLoggedInSuccess(user) {
     browserHistory.push('/');
     return {
-        type: types.AUTH_LOGGED_IN_SUCCESS, user
+        type: types.AUTH_LOGIN_SUCCESS, user
+    };
+}
+
+export function authLoginError(error) {
+    return {
+        type: types.AUTH_LOGIN_ERROR,
+        error
+    };
+}
+
+export function authLogoutError(error) {
+    return {
+        type: types.AUTH_LOGOUT_ERROR,
+        error
     };
 }
 
@@ -88,47 +102,60 @@ export function authLoggedIn(user) {
     };
 }
 
-export function signInWithEmailAuthProvider(user) {
+export function signInWithEmailAuthProvider(email, password) {
     return (dispatch) => {
         dispatch(beginAsyncCall(true));
-        return FirebaseApi.signInWithEmailAndPassword(user)
+        return FirebaseApi.signInWithEmailAndPassword(email, password)
             .then(
                 user => {
                     dispatch(authLoggedIn(user.uid));
                 })
             .catch(error => {
+                dispatch(authLoginError(error));
                 dispatch(beginAsyncCall(false));
-                // @TODO better error handling
-                throw (error);
             });
     };
 }
 
-export function signInWithGoogleAuthProvider(user = 'cijo.kb@gmail.com') {
+export function createUserWithEmailAndPassword(email, password) {
     return (dispatch) => {
         dispatch(beginAsyncCall(true));
-        return FirebaseApi.signInWithGoogleAuthProvider(user)
+        return FirebaseApi.createUserWithEmailAndPassword(email, password).then(user => {
+            //dispatch(userCreated(user));
+        }).catch(error => {
+            dispatch(beginAsyncCall(false));
+            // @TODO better error handling
+        });
+    };
+}
+
+export function signInWithGoogleAuthProvider() {
+    return (dispatch) => {
+        dispatch(beginAsyncCall(true));
+        return FirebaseApi.signInWithGoogleAuthProvider()
             .then(
                 user => {
                     dispatch(beginAsyncCall(false));
                     dispatch(authLoggedIn(user));
                 })
             .catch(error => {
+                dispatch(authLoginError(error));
                 dispatch(beginAsyncCall(false));
-                // @TODO better error handling
-                throw (error);
             });
     };
 }
 
 export function signOut() {
-    return (dispatch) => FirebaseApi.authSignOut().then(() => {
-        dispatch(beginAsyncCall(false));
-        dispatch(authLoggedOutSuccess());
-        dispatch(showingSnackBar('Logout successfull'));
-    }).catch((error) => {
-        dispatch(beginAsyncCall(false));
-        // @TODO better error handling
-        throw (error);
-    });
+    return (dispatch) => {
+        dispatch(beginAsyncCall(true));
+        FirebaseApi.authSignOut().then(() => {
+            dispatch(beginAsyncCall(false));
+            dispatch(authLoggedOutSuccess());
+            dispatch(showingSnackBar('Logout successfull'));
+        }).catch((error) => {
+            dispatch(beginAsyncCall(false));
+            // @TODO better error handling
+            throw (error);
+        });
+    };
 }

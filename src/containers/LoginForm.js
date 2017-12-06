@@ -9,14 +9,14 @@ class LoginForm extends Component {
         super(props);
         this.signInWithEmailAuthProvider = this.signInWithEmailAuthProvider.bind(this);
     }
-    signInWithEmailAuthProvider(email, password) {
+    signInWithEmailAuthProvider({email, password}) {
         console.log(email + password);
         this.props.actions.signInWithEmailAuthProvider(email, password);
     }
     render() {
         return (
             <LoginFormPage
-
+                signInWithEmailAuthProvider={this.signInWithEmailAuthProvider}
             />
         );
     }

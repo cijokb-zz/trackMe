@@ -16,3 +16,7 @@
 .Login ul li button {
   border:1px solid red;
 }
+
+.LoginForm {
+  margin:10px 20px;
+}
