@@ -19,7 +19,9 @@ const initialState = {
             initialized: false,
             photoURL: null,
             displayName: null,
-            email: null
+            email: null,
+            errorCode: '',
+            errorDetails: ''
         },
     },
     appStatus: {

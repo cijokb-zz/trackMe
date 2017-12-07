@@ -2,11 +2,14 @@ import React from 'react';
 import defaultAvatar from './user.svg';
 import PropTypes from 'prop-types';
 
-const Avatar = ({photoURL, displayName, email}) => {
+const Avatar = ({photoURL, displayName, email}) =>
     //const {photoURL, displayName, email} = props;
-    return (<div className="User_Info">
+    (<div className="User_Info">
         <div className="User_image_container">
-            <img src={photoURL} className="User_image" alt="UserImage"/>
+            <img src={photoURL} className="User_image" alt="UserImage"
+                onError={(event) => {
+                    event.target.src = defaultAvatar;
+                }}/>
         </div>
         <div className="">
             {displayName}
@@ -14,8 +17,8 @@ const Avatar = ({photoURL, displayName, email}) => {
         <div className="">
             {email}
         </div>
-    </div>);
-};
+    </div>)
+;
 
 Avatar.defaultProps = {
     photoURL: defaultAvatar,

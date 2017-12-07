@@ -17,7 +17,7 @@ export default function fireBaseReducer (state = initialState.fireBase, action) 
     case types.AUTH_INITIALIZATION_DONE :
         return Object.assign({}, state, {auth: Object.assign({}, state.auth, {initialized: true})});
 
-    case types.AUTH_LOGGED_IN_SUCCESS:
+    case types.AUTH_LOGIN_SUCCESS:
         return Object.assign({}, state, {auth: Object.assign({}, state.auth,
             {isLogged: true, currentUserUID: action.user.uid, displayName: action.user.displayName,
                 email: action.user.email, photoURL: action.user.photoURL})});
@@ -25,7 +25,9 @@ export default function fireBaseReducer (state = initialState.fireBase, action) 
     case types.AUTH_LOGGED_OUT_SUCCESS:
         return Object.assign({}, state, {auth: Object.assign({}, state.auth, {isLogged: false,
             currentUserUID: null, displayName: null, email: null, photoURL: null})});
-
+    case types.AUTH_LOGIN_ERROR:
+        return Object.assign({}, state, {auth: Object.assign({}, state.auth,
+            {isLogged: false, errorCode: action.error.code, errorDetails: action.error.message})});
     default:
         return state;
     }
