@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import './Login.css';
+import {Link} from 'react-router';
 // const LoginFormPage = ({signInWithEmailAuthProvider}) => {
 //     function formSubmit(e) {
 //         const email = '123@gmail.com';
@@ -74,6 +75,11 @@ class LoginFormPage extends Component {
                         ref="password"
                         onChange={this.handleOnChange}
                     /><br/>
+                    <div className="LoginExtra">
+                        <Link to="signUp" className ="SignUp">New user</Link>
+                        <span>|</span>
+                        <Link to="forgotPassword" className ="ForgotPassword">Forgot password ?</Link>
+                    </div>
                     <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={this.handleClick}/>
                 </form>
             </div>
