@@ -2,7 +2,7 @@
 
 import FirebaseApi from '../api/firebase';
 import * as types from './actionTypes';
-import {beginAsyncCall, showingSnackBar} from './ajaxCallStatusActions';
+import {beginAsyncCall, showingSnackBar, showingDailog} from './ajaxCallStatusActions';
 import { browserHistory } from 'react-router';
 
 export function fireBaseInitDone(initStatus) {
@@ -64,7 +64,20 @@ export function authLoggedOutSuccess() {
     return {type: types.AUTH_LOGGED_OUT_SUCCESS};
 }
 
+export function userCreationSuccess(user) {
+    browserHistory.push('/');
+    return {
+        type: types.CREATE_USER_SUCCESS,
+        user
+    };
+}
 
+export function userCreationError(error) {
+    return {
+        type: types.CREATE_USER_ERROR,
+        error
+    };
+}
 
 export function authInitialized(user) {
     return (dispatch) => {
@@ -83,22 +96,8 @@ export function authInitialized(user) {
 export function authLoggedIn(user) {
     return (dispatch) => {
         dispatch(beginAsyncCall(false));
-
         dispatch(authLoggedInSuccess(user));
         dispatch(showingSnackBar('Login successfull'));
-        // dispatch(beginAsyncCall());
-        // firebaseApi.GetChildAddedByKeyOnce('/users', userUID)
-        //     .then(
-        //         user => {
-        //             dispatch(userLoadedSuccess(user.val()));
-        //             dispatch(push('/'));
-        //         })
-        //     .catch(
-        //         error => {
-        //             dispatch(beginAsyncCall());
-        //             // @TODO better error handling
-        //             throw (error);
-        //         });
     };
 }
 
@@ -121,9 +120,14 @@ export function createUserWithEmailAndPassword(email, password) {
     return (dispatch) => {
         dispatch(beginAsyncCall(true));
         return FirebaseApi.createUserWithEmailAndPassword(email, password).then(user => {
-            //dispatch(userCreated(user));
-        }).catch(error => {
+            dispatch(userCreationSuccess(user));
             dispatch(beginAsyncCall(false));
+            dispatch(showingSnackBar('User created successfully'));
+        }).catch(error => {
+            dispatch(userCreationError(error));
+            dispatch(beginAsyncCall(false));
+            //dispatch(showingSnackBar('!Oops User creation failed -' + error.message));
+            dispatch(showingDailog(error.message));
             // @TODO better error handling
         });
     };

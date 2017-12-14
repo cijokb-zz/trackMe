@@ -28,7 +28,8 @@ const initialState = {
 
     },
     isLoading: false,
-    snackBarMsg: ''
+    snackBarMsg: '',
+    dialogMsg: ''
 };
 
 export default initialState;

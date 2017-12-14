@@ -28,6 +28,13 @@ export default function fireBaseReducer (state = initialState.fireBase, action) 
     case types.AUTH_LOGIN_ERROR:
         return Object.assign({}, state, {auth: Object.assign({}, state.auth,
             {isLogged: false, errorCode: action.error.code, errorDetails: action.error.message})});
+    case types.CREATE_USER_SUCCESS:
+        return Object.assign({}, state, {auth: Object.assign({}, state.auth,
+            {isLogged: true, currentUserUID: action.user.uid, displayName: action.user.displayName,
+                email: action.user.email, photoURL: action.user.photoURL})});
+    case types.CREATE_USER_ERROR:
+        return Object.assign({}, state, {auth: Object.assign({}, state.auth,
+            {isLogged: false, errorCode: action.error.code, errorDetails: action.error.message})});
     default:
         return state;
     }

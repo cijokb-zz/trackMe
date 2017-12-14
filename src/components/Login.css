@@ -17,6 +17,21 @@
   border:1px solid red;
 }
 
-.LoginForm {
+.LoginForm, .SignUpForm {
   margin:10px 20px;
 }
+
+.LoginForm .LoginExtra {
+  margin:20px 0px;
+}
+
+.LoginForm .LoginExtra .SignUp {
+  padding: 15px 10px;
+  position: relative;
+}
+
+.LoginForm .LoginExtra .ForgotPassword{
+  padding: 15px 10px;
+  position: relative;
+}
+
