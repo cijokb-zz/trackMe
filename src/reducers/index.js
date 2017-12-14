@@ -7,6 +7,7 @@ import isLoading from './ajaxCallStatusReducer';
 import fireBase from './fireBaseReducer';
 import appStatus from './appStatusReducer';
 import snackBarMsg from './snackBarReducer';
+import dialogMsg from './dialogReducer';
 
 import {combineReducers} from 'redux';
 
@@ -14,7 +15,9 @@ const rootReducer = combineReducers({
     fireBase,
     appStatus,
     isLoading,
-    snackBarMsg
+    snackBarMsg,
+    dialogMsg
+
 
 });
 

@@ -13,6 +13,7 @@ import Footer from '../components/common/Footer';
 
 import Header from '../containers/Header';
 import SnackBar from '../containers/SnackBar';
+import Dialog from '../containers/Dialog';
 
 class App extends Component {
     componentWillReceiveProps(props) {
@@ -50,6 +51,7 @@ class App extends Component {
                 <Header/>
                 <Loaders currentStatus={this.props.isLoading ? 'loading' : 'hide'}/>
                 {this.props.children}
+                <Dialog/>
                 <SnackBar/>
                 <Footer/>
             </div>
