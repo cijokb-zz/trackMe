@@ -31,5 +31,9 @@ export default class FireBaseApi {
     static createUserWithEmailAndPassword(email, password) {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
     }
+
+    static getDatabaseValues(key) {
+        return firebase.database().ref(key);
+    }
 }
 

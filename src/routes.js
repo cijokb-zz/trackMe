@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import App from './containers/App';
 import Login from './containers/Login';
-import HomePage from './components/common/HomePage';
+import HomePage from './containers/Home';
 import NotFoundPage from './components/NotFoundPage';
 import AppInitError from './containers/AppInitError';
 import LoginForm from './containers/LoginForm';

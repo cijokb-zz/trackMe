@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultAvatar from './user.svg';
+import defaultAvatar from '../../images/user.svg';
 import PropTypes from 'prop-types';
 
 const Avatar = ({photoURL, displayName, email}) =>
