@@ -22,10 +22,18 @@ const initialState = {
             email: null,
             errorCode: '',
             errorDetails: ''
-        },
+        }
     },
     appStatus: {
 
+    },
+    userActions: {
+        addTeam: {
+            success: false,
+            key: null,
+            errorCode: '',
+            errorDetails: ''
+        }
     },
     isLoading: false,
     snackBarMsg: '',
