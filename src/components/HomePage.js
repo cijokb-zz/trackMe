@@ -9,28 +9,25 @@ import iphone from '../images/iosphone.svg';
 import ipad from '../images/iostablet.svg';
 import tablet from '../images/androidtablet.svg';
 
-const HomePage = ({devices}) => {
-    return (<div className="HomePageWrapper">
-        {devices ? devices.map(function (item) {
-            return (<Card key={item.key} style={{marginBottom: '5px'}} initiallyExpanded={false}>
-                <CardHeader
-                    title={item.model}
-                    subtitle={item.tag}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    avatar={imgAvatar(item.os, item.category)}
-                    style={{'textAlign': 'left'}}
-                />
-                <CardText expandable>
-                    <CardText>
+const HomePage = ({devices}) => (<div className="HomePageWrapper">
+    {devices ? devices.map(function (item) {
+        return (<Card key={item.key} style={{marginBottom: '5px'}} initiallyExpanded={false}>
+            <CardHeader
+                title={item.model}
+                subtitle={item.tag}
+                actAsExpander={true}
+                showExpandableButton={true}
+                avatar={imgAvatar(item.os, item.category)}
+                style={{'textAlign': 'left'}}
+            />
+            <CardText expandable>
+                <CardText>
                       "Todo"
-                    </CardText>
                 </CardText>
-            </Card>);
-        }) : null
-        }
-    </div>);
-};
+            </CardText>
+        </Card>);
+    }) : null}
+</div>);
 
 const imgAvatar = (os = 'android', category = 'phone') => {
     let avatarUrl = tablet;

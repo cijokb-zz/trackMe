@@ -27,3 +27,10 @@ export const SHOWING_SNACKBAR = 'SHOWING_SNACKBAR';
 
 //Dialogwindow
 export const SHOWING_DIALOG = 'SHOWING_DIALOG';
+
+//user actions
+export const CREATE_TEAM = 'CREATE_TEAM';
+export const CREATE_TEAM_SUCCESS = 'CREATE_TEAM_SUCCESS';
+export const CREATE_TEAM_ERROR = 'CREATE_TEAM_ERROR';
+
+export const MENU_ITEM_CLICK = 'MENU_ITEM_CLICK';
