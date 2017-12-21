@@ -4,19 +4,21 @@
 //import {combineReducers} from 'redux-immutable';
 import isLoading from './ajaxCallStatusReducer';
 //import users from './createUserReducer';
+import {combineReducers} from 'redux';
 import fireBase from './fireBaseReducer';
 import appStatus from './appStatusReducer';
 import snackBarMsg from './snackBarReducer';
 import dialogMsg from './dialogReducer';
+import userActions from './userActionsReducer';
 
-import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
     fireBase,
     appStatus,
     isLoading,
     snackBarMsg,
-    dialogMsg
+    dialogMsg,
+    userActions
 
 
 });

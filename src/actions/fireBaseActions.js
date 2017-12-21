@@ -112,6 +112,7 @@ export function signInWithEmailAuthProvider(email, password) {
             .catch(error => {
                 dispatch(authLoginError(error));
                 dispatch(beginAsyncCall(false));
+                dispatch(showingDailog(error.message));
             });
     };
 }
@@ -145,6 +146,7 @@ export function signInWithGoogleAuthProvider() {
             .catch(error => {
                 dispatch(authLoginError(error));
                 dispatch(beginAsyncCall(false));
+                dispatch(showingDailog(error.message));
             });
     };
 }

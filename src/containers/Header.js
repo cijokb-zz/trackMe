@@ -19,19 +19,20 @@ export class Header extends Component {
     }
     render() {
         return (
-            <HeaderBar userInfo={this.props.userInfo} signOut={this.signOut}/>
+            <HeaderBar userInfo={this.props.userInfo} signOut={this.signOut} isLogged={this.props.isLogged}/>
         );
     }
 }
 function mapStateToProps(state, props) {
     return {
-        userInfo: state.fireBase.auth
+        userInfo: state.fireBase.auth,
+        isLogged: state.fireBase.auth.isLogged
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            signOut: bindActionCreators(signOut,dispatch)
+            signOut: bindActionCreators(signOut, dispatch)
         }
     };
 }
