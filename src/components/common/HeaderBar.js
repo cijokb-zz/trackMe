@@ -1,12 +1,23 @@
 //import Header from './Header';
 //import HamburgerDrawer from './HamburgerDrawer';
 import React, {Component} from 'react';
-import AppMenu from '../../containers/AppMenu';
+import AppMenu from './AppMenu';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from './Avatar';
 import './HeaderBar.css';
+// const Headerbar = () => (
+//     <div>
+//         <AppBar
+//             title="TrackMe"
+//             style={{backgroundColor: '#3F51B5', textAlign: 'center'}}
+//             iconElementRight={<AppMenu/>}
+//             onLeftIconButtonTouchTap={}
+//         />
+//         <HamburgerDrawer/>
+//     </div>
+// );
 
 class HeaderBar extends Component {
     constructor(props) {
@@ -29,8 +40,8 @@ class HeaderBar extends Component {
         console.log(props);
     }
     render () {
-        const props = this.props;
-        const userInfo = props.userInfo;
+        const props = this.props.userInfo;
+        console.log('render - Header.js');
         return (
             <div>
                 <AppBar
@@ -38,23 +49,22 @@ class HeaderBar extends Component {
                     style={{backgroundColor: '#3F51B5', textAlign: 'center'}}
                     iconElementRight={<AppMenu/>}
                     onLeftIconButtonTouchTap={this.handleDrawer}
-                    showMenuIconButton={!!props.isLogged}
                 />
-                {props.isLogged
-                    ? <Drawer
-                        docked={false}
-                        width={200}
-                        open={this.state.open}
-                        onRequestChange={(open) => this.setState({open})}
-                        swipeAreaWidth={null}
-                    >
-                        <Avatar displayName={userInfo.displayName || undefined} email={userInfo.email || undefined}
-                            photoURL={props.photoURL || undefined}/>
-                        <MenuItem onClick={this.handleDrawer}>Menu Item</MenuItem>
-                        <MenuItem onClick={this.signOut}>Sign Out</MenuItem>
-                    </Drawer> : null}
-            </div>);
-    };
+                <Drawer
+                    docked={false}
+                    width={200}
+                    open={this.state.open}
+                    onRequestChange={(open) => this.setState({open})}
+                    swipeAreaWidth={null}
+                >
+                    <Avatar displayName={props.displayName || undefined} email={props.email || undefined}
+                        photoURL={props.photoURL || undefined}/>
+                    <MenuItem onClick={this.handleDrawer}>Menu Item</MenuItem>
+                    <MenuItem onClick={this.signOut}>Sign Out</MenuItem>
+                </Drawer>
+            </div>
+        );
+    }
 }
 
 export default HeaderBar;

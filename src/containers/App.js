@@ -9,7 +9,7 @@ import {authInitialized, fireBaseInitError} from '../actions/fireBaseActions';
 //presentational components
 import Loaders from '../components/common/Loaders';
 //import HeaderBar from '../components/common/HeaderBar';
-import Footer from '../containers/Footer';
+import Footer from '../components/common/Footer';
 
 import Header from '../containers/Header';
 import SnackBar from '../containers/SnackBar';

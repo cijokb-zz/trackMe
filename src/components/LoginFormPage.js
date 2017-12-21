@@ -3,6 +3,34 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import './Login.css';
 import {Link} from 'react-router';
+// const LoginFormPage = ({signInWithEmailAuthProvider}) => {
+//     function formSubmit(e) {
+//         const email = '123@gmail.com';
+//         const paswword = '123456';
+//         signInWithEmailAuthProvider(email, paswword);
+//     }
+// //     return (
+//         <div className="LoginForm">
+//             <form>
+//                 <TextField
+//                     hintText="email@abc.com"
+//                     floatingLabelText="* Email"
+//                     type="email"
+//                     fullWidth={true}
+//                     id="loginEmail"
+//                 /><br/>
+//                 <TextField
+//                     hintText="Password Field"
+//                     floatingLabelText="* Password"
+//                     type="password"
+//                     fullWidth={true}
+//                     id="loginPassword"
+//                 /><br/>
+//                 <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={(e) => formSubmit(e)}/>
+//             </form>
+//         </div>
+//     );
+// };
 
 class LoginFormPage extends Component {
     constructor(props) {

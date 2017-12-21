@@ -11,17 +11,19 @@ class Home extends Component {
         };
     }
 
-    componentDidMount() {
-        const data = FirebaseApi.getDatabaseValues('devices');
-        data.on('value', function (snap) {
-            const devices = [];
-            snap.forEach(function (itemSnap) {
-                const device = itemSnap.val();
-                device.key = itemSnap.key;
-                devices.push(device);
-            });
-            this.setState({devices: devices});
-        }.bind(this));
+    componentWillReceiveProps(props) {
+        if (props.isLogged) {
+            const data = FirebaseApi.getDatabaseValues('devices');
+            data.on('value', function(snap) {
+                const devices = [];
+                snap.forEach(function(itemSnap) {
+                    const device = itemSnap.val();
+                    device.key = itemSnap.key;
+                    devices.push(device);
+                });
+                this.setState({devices: devices});
+            }.bind(this));
+        }
     }
 
     render() {
@@ -30,7 +32,6 @@ class Home extends Component {
         );
     }
 }
-
 function mapStateToProps(state, ownProps) {
     return {
         isLogged: state.fireBase.auth.isLogged
