@@ -49,7 +49,7 @@ class HeaderBar extends Component {
                         swipeAreaWidth={null}
                     >
                         <Avatar displayName={userInfo.displayName || undefined} email={userInfo.email || undefined}
-                            photoURL={props.photoURL || undefined}/>
+                            photoURL={userInfo.photoURL || undefined}/>
                         <MenuItem onClick={this.handleDrawer}>Menu Item</MenuItem>
                         <MenuItem onClick={this.signOut}>Sign Out</MenuItem>
                     </Drawer> : null}

@@ -9,6 +9,13 @@ export default function userActionsReducer (state = initialState.userActions, ac
         return Object.assign({}, state, {addTeam: Object.assign({}, state.addTeam, {success: false, key: null,
             errorCode: action.error.code,
             errorDetails: action.error.message})});
+    case types.CREATE_DEVICE_SUCCESS:
+        return Object.assign({}, state, {addDevice: Object.assign({}, state.addDevice, {success: true,
+            key: action.key})});
+    case types.CREATE_DEVICE_ERROR:
+        return Object.assign({}, state, {addDevice: Object.assign({}, state.addDevice, {success: false, key: null,
+            errorCode: action.error.code,
+            errorDetails: action.error.message})});
     default:
         return state;
     }

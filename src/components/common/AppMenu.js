@@ -13,7 +13,7 @@ const AppMenu = (props) => (
             iconStyle={{color: 'rgb(255, 255,255)'}}
         >
             <MenuItem primaryText="Add Team" onClick={() => props.menuItemClick('addTeam')}/>
-            <MenuItem primaryText="Send feedback" />
+            <MenuItem primaryText="Add Device" onClick={() => props.menuItemClick('addDevice')}/>
             <MenuItem primaryText="Settings"/>
             <MenuItem primaryText="Help" />
             <MenuItem primaryText="Sign out" />

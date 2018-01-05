@@ -8,6 +8,7 @@ import AppInitError from './containers/AppInitError';
 import LoginForm from './containers/LoginForm';
 import SignUp from './containers/SignUp';
 import AddTeam from './containers/AddTeam';
+import AddDevice from './containers/AddDevice';
 
 export default (
     <Route path="/" component={App}>
@@ -17,6 +18,7 @@ export default (
         <Route path="/loginForm" component={LoginForm}/>
         <Route path="/signUp" component={SignUp}/>
         <Route path="/addTeam" component={AddTeam}/>
+        <Route path="/addDevice" component={AddDevice}/>
         <Route path="/home" component={HomePage}/>
         <Route path="*" exact={true} component={NotFoundPage} />
     </Route>
