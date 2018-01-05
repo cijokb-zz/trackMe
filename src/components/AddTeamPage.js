@@ -7,6 +7,7 @@ class AddTeamPage extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.resetValues = this.resetValues.bind(this);
         this.state = {
             team: {
                 teamId: '',
@@ -15,13 +16,17 @@ class AddTeamPage extends Component {
         };
     }
     componentWillReceiveProps(newProps) {
+        if (newProps.addTeam.success) {
+            this.resetValues();
+        }
+    }
+
+    resetValues() {
         const team = {
             teamId: '',
             teamName: ''
         };
-        if (newProps.addTeam.success) {
-            this.setState({team});
-        }
+        this.setState({team});
     }
     handleOnChange(event) {
         const field = event.target.id;
@@ -33,7 +38,7 @@ class AddTeamPage extends Component {
         this.props.createTeam(this.state.team);
     }
     render() {
-        return (<div className="LoginForm">
+        return (<div className="AddTeam">
             <h3>Add Team</h3>
             <form>
                 <TextField
@@ -53,7 +58,7 @@ class AddTeamPage extends Component {
                     onChange={this.handleOnChange}
                     value={this.state.team.teamName}/><br/>
                 <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={this.handleClick}/>
-                <RaisedButton label="Cancel" type="reset" />
+                <RaisedButton label="Cancel" type="reset" onClick={this.resetValues} />
             </form>
         </div>);
     }

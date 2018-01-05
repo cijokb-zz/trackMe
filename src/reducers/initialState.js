@@ -33,6 +33,12 @@ const initialState = {
             key: null,
             errorCode: '',
             errorDetails: ''
+        },
+        addDevice: {
+            success: false,
+            key: null,
+            errorCode: '',
+            errorDetails: ''
         }
     },
     isLoading: false,
