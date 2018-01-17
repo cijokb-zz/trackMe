@@ -30,7 +30,7 @@ class AddDevice extends Component {
     }
     render() {
         return (
-            <AddDevicePage createDevice={this.createDevice}  {...this.props} />
+            <AddDevicePage createDevice={this.createDevice} teams={this.state.teams} {...this.props} />
         );
     }
 }
