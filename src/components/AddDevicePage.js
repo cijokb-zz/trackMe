@@ -4,25 +4,29 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import PropTypes from 'prop-types';
 class AddDeviceTeamPage extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.updateCheck = this.updateCheck.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
-        //this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.resetValues = this.resetValues.bind(this);
         this.state = {
             device: {
                 model: '',
                 tag: '',
-                charger: false,
+                adapter: false,
                 cable: false,
                 os: 'android',
-                category: 'phone'
-            }
+                category: 'phone',
+                teamId:'FWK'
+            },
+            teams:props.teams
         };
     }
+
     updateCheck(event) {
         const field = event.target.id;
         const device = this.state.device;
@@ -48,17 +52,21 @@ class AddDeviceTeamPage extends Component {
         const device = {
             model: '',
             tag: '',
-            charger: false,
+            adapter: false,
             cable: false,
             os: 'android',
-            category: 'phone'
+            category: 'phone',
+            teamId:'FWK'
         };
         this.setState({device});
     }
     componentWillReceiveProps(newProps) {
-      if (newProps.addDevice.success) {
-        this.resetValues();
-      }
+        if (newProps.addDevice.success) {
+            this.resetValues();
+        }
+        if(newProps.teams.length >0){
+          this.setState({teams:newProps.teams});
+        }
     }
     render() {
         const styles = {
@@ -90,10 +98,23 @@ class AddDeviceTeamPage extends Component {
                     onChange={this.handleOnChange}
                     value={this.state.device.tag}
                 /><br/>
+              <SelectField
+                floatingLabelText="FrameWork"
+                value={this.state.device.teamId}
+                onChange={this.handleChange('teamId')}
+                fullWidth={true}
+                style={{'textAlign': 'left'}}
+                id="Team"
+              >
+                {this.state.teams.map(function (team) {
+                  return (<MenuItem key ={team.key} value={team.teamId} primaryText={team.teamName}/>)
+                })
+                }
+              </SelectField>
                 <SelectField
                     floatingLabelText="OS"
                     value={this.state.device.os}
-                    onChange={this.handleChange("os")}
+                    onChange={this.handleChange('os')}
                     fullWidth={true}
                     style={{'textAlign': 'left'}}
                     id="os"
@@ -105,7 +126,7 @@ class AddDeviceTeamPage extends Component {
                 <SelectField
                     floatingLabelText="Category"
                     value={this.state.device.category}
-                    onChange={this.handleChange("category")}
+                    onChange={this.handleChange('category')}
                     fullWidth={true}
                     style={{'textAlign': 'left'}}
                     id="category"
@@ -117,11 +138,11 @@ class AddDeviceTeamPage extends Component {
                 </SelectField>
                 <br />
                 <Checkbox
-                    label="Charger"
-                    checked={this.state.device.charger}
+                    label="Adapter"
+                    checked={this.state.device.adapter}
                     onCheck={this.updateCheck}
                     style={styles.checkbox}
-                    id="charger"
+                    id="Adapter"
                 />
                 <Checkbox
                     label="Cable"
@@ -138,4 +159,11 @@ class AddDeviceTeamPage extends Component {
     }
 }
 
+AddDeviceTeamPage.defaultProps = {
+  teams: []
+};
+
+AddDeviceTeamPage.propTypes = {
+  teams: PropTypes.array.isRequired
+};
 export default AddDeviceTeamPage;
