@@ -19,9 +19,9 @@ class AddTeam extends Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({userActions}, ownProps) {
     return {
-        addTeam: state.userActions.addTeam
+        addTeam: userActions.addTeam
     };
 }
 function mapDispatchToProps(dispatch) {

@@ -53,17 +53,16 @@ class App extends Component {
                 {this.props.children}
                 <Dialog/>
                 <SnackBar/>
-                <Footer/>
             </div>
         );
     }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps ({isLoading, init, auth}, ownProps) {
     return {
-        isLoading: state.isLoading,
-        appInitError: state.fireBase.init,
-        userInfo: state.fireBase.auth
+        isLoading: isLoading,
+        appInitError: init,
+        userInfo: auth
     };
 }
 

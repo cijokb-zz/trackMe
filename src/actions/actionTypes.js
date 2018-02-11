@@ -28,6 +28,10 @@ export const SHOWING_SNACKBAR = 'SHOWING_SNACKBAR';
 //Dialogwindow
 export const SHOWING_DIALOG = 'SHOWING_DIALOG';
 
+// fectching device details
+export const FETCH_DEVICE_DETAILS = 'FETCH_DEVICE_DETAILS';
+export const FETCH_DEVICE_DETAILS_SUCCESS = 'FETCH_DEVICE_DETAILS_SUCCESS';
+
 //user actions
 //team
 export const CREATE_TEAM = 'CREATE_TEAM';

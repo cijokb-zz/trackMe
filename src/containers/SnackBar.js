@@ -7,9 +7,10 @@ const SnackBar = ({message}) => {
     return <SnackBarCmp message={message} show={show}/>;
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({snackBarMsg}, ownProps) {
     return {
-        message: state.snackBarMsg
+        message: snackBarMsg.message,
+        timeStamp: snackBarMsg.timeStamp
     };
 }
 

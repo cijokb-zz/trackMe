@@ -23,10 +23,10 @@ export class Header extends Component {
         );
     }
 }
-function mapStateToProps(state, props) {
+function mapStateToProps({auth}, props) {
     return {
-        userInfo: state.fireBase.auth,
-        isLogged: state.fireBase.auth.isLogged
+        userInfo: auth,
+        isLogged: auth.isLogged
     };
 }
 function mapDispatchToProps(dispatch) {

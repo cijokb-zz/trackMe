@@ -4,7 +4,7 @@ import initialState from './initialState';
 export default function snackBarReducer (state = initialState.snackBarMsg, action) {
     switch (action.type) {
     case types.SHOWING_SNACKBAR:
-        return action.message;
+        return Object.assign({}, state, {message: action.message, timeStamp: Date.now()});
     default:
         return state;
     }
