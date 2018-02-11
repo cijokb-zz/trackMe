@@ -9,9 +9,9 @@ const AppInitError = (props) => (
     <AppInitErrorPage error={props.error}/>
 );
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({init}, ownProps) {
     return {
-        error: state.fireBase.init
+        error: init
     };
 }
 

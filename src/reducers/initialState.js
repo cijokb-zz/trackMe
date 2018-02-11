@@ -7,22 +7,20 @@
 // });
 
 const initialState = {
-    fireBase: {
-        init: {
-            success: null,
-            errorCode: '',
-            errorDetails: ''
-        },
-        auth: {
-            isLogged: false,
-            currentUserUID: null,
-            initialized: false,
-            photoURL: null,
-            displayName: null,
-            email: null,
-            errorCode: '',
-            errorDetails: ''
-        }
+    init: {
+        success: null,
+        errorCode: '',
+        errorDetails: ''
+    },
+    auth: {
+        isLogged: false,
+        currentUserUID: null,
+        initialized: false,
+        photoURL: null,
+        displayName: null,
+        email: null,
+        errorCode: '',
+        errorDetails: ''
     },
     appStatus: {
 
@@ -41,9 +39,19 @@ const initialState = {
             errorDetails: ''
         }
     },
+    devices: [],
+    user: {
+
+    },
     isLoading: false,
-    snackBarMsg: '',
-    dialogMsg: ''
+    snackBarMsg: {
+        message: '',
+        timeStamp: ''
+    },
+    dialogMsg: {
+        message: '',
+        timeStamp: ''
+    },
 };
 
 export default initialState;

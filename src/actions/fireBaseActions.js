@@ -165,3 +165,29 @@ export function signOut() {
         });
     };
 }
+
+export function fetchDeviceDetails() {
+    return (dispatch) => {
+        //dispatch(beginAsyncCall(true));
+        const data = FirebaseApi.getDatabaseValues('devices');
+        data.on('value', function (snap) {
+            const devices = [];
+            snap.forEach(function (itemSnap) {
+                const device = itemSnap.val();
+                device.key = itemSnap.key;
+                devices.push(device);
+            });
+            console.log(devices);
+            // return {
+            //     type: types.FETCH_DEVICE_DETAILS, devices
+            // };
+            dispatch(fetchDeviceDetailsSuccess(devices));
+        });
+    };
+}
+
+export function fetchDeviceDetailsSuccess(devices) {
+    return {
+        type: types.FETCH_DEVICE_DETAILS, devices
+    };
+}

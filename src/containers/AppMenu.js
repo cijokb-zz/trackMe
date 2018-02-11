@@ -9,9 +9,9 @@ const AppMenu = (props) => (
     props.isLogged ? <AppMenuCmp {...props}/> : null
 );
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({auth}, ownProps) {
     return {
-        isLogged: state.fireBase.auth.isLogged
+        isLogged: auth.isLogged
     };
 }
 

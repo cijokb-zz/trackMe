@@ -7,9 +7,11 @@ const Dialog = ({message}) => {
     return <DialogWindow message={message} show={show}/>;
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({dialogMsg}, ownProps) {
     return {
-        message: state.dialogMsg
+        message: dialogMsg.message,
+        timeStamp: dialogMsg.timeStamp
+
     };
 }
 

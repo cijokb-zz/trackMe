@@ -29,9 +29,9 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({auth}, ownProps) {
     return {
-        isLogged: state.fireBase.auth.isLogged
+        isLogged: auth.isLogged
     };
 }
 

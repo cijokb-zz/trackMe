@@ -35,9 +35,9 @@ class AddDevice extends Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({userActions}, ownProps) {
     return {
-        addDevice: state.userActions.addDevice
+        addDevice: userActions.addDevice
     };
 }
 function mapDispatchToProps(dispatch) {

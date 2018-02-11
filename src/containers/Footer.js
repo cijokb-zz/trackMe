@@ -4,9 +4,9 @@ import FooterCmp from '../components/common/Footer';
 
 const Footer = ({isLogged}) => <FooterCmp isLogged={isLogged}/>;
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps({auth}, ownProps) {
     return {
-        isLogged: state.fireBase.auth.isLogged
+        isLogged: auth.isLogged
     };
 }
 

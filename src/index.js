@@ -7,12 +7,12 @@ import initialState from './reducers/initialState';
 import Root from './containers/Root';
 
 import {initApp} from './actions/fireBaseActions';
-const store = configureStore(initialState); //creating store with default initialState
+const configStore = configureStore(initialState); //creating store with default initialState
 
 
 //initialize the app using firebase
-store.dispatch(initApp());
+configStore.store.dispatch(initApp());
 
 ReactDOM.render(
-    <Root store={store}/>, document.getElementById('root'));
+    <Root {...configStore}/>, document.getElementById('root'));
 registerServiceWorker();
