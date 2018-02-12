@@ -15,7 +15,6 @@ class Home extends Component {
     }
     componentWillReceiveProps(props) {
         console.log(props.devices);
-
     }
 
     componentDidMount() {
@@ -34,12 +33,12 @@ class Home extends Component {
 
     render() {
         return (
-          this.props.devices?<HomePage devices={this.props.devices}/>:null
+            this.props.devices ? <HomePage devices={this.props.devices}/> : null
         );
     }
 }
 
-function mapStateToProps({auth,devices}, ownProps) {
+function mapStateToProps({auth, devices}, ownProps) {
     return {
         isLogged: auth.isLogged,
         devices: devices
