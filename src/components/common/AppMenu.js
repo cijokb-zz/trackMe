@@ -16,7 +16,6 @@ const AppMenu = (props) => (
             <MenuItem primaryText="Add Device" onClick={() => props.menuItemClick('addDevice')}/>
             <MenuItem primaryText="Settings"/>
             <MenuItem primaryText="Help" />
-            <MenuItem primaryText="Sign out" />
         </IconMenu>
     </div>
 );
