@@ -7,6 +7,7 @@ class SignUpPage extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.resetValues = this.resetValues.bind(this);
         this.comparePassword = this.comparePassword.bind(this);
         this.validateFields = this.validateFields.bind(this);
         this.validateEmail = this.validateEmail.bind(this);
@@ -51,6 +52,14 @@ class SignUpPage extends Component {
         return Utils.validateEmail(email);
     }
 
+    resetValues() {
+        const user={
+            email: '',
+            password: '',
+            password2: ''
+        }
+        this.setState({user});
+    }
     render() {
         console.log('render');
         return (
@@ -64,10 +73,11 @@ class SignUpPage extends Component {
                         id="email"
                         ref="email"
                         onChange={this.handleOnChange}
+                        value={this.state.user.email}
                         required
                     /><br/>
                     <TextField
-                        hintText="Password Field"
+                        hintText="Min 6 cahracters"
                         floatingLabelText="* Password"
                         type="password"
                         fullWidth={true}
@@ -75,6 +85,7 @@ class SignUpPage extends Component {
                         ref="password"
                         onChange={this.handleOnChange}
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                        value={this.state.user.password}
                         required
                     /><br/>
                     <TextField
@@ -86,10 +97,13 @@ class SignUpPage extends Component {
                         ref="password2"
                         onChange={this.handleOnChange}
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                        value={this.state.user.password2}
                         required
                     /><br/>
                     <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}}
                         onClick={this.handleClick} disabled={this.state.btnDisabled} />
+                    <RaisedButton label="Cancel" primary={true} style={{'margin': '12px'}}
+                        onClick={this.resetValues}  />    
                 </form>
             </div>
         );
