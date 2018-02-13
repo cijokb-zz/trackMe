@@ -23,7 +23,8 @@ class AddDeviceTeamPage extends Component {
                 category: 'phone',
                 teamId:'FWK'
             },
-            teams:props.teams
+            teams:props.teams,
+            btnDisabled: true
         };
     }
 
@@ -37,7 +38,16 @@ class AddDeviceTeamPage extends Component {
         const field = event.target.id;
         const device = this.state.device;
         device[field] = event.target.value;
-        this.setState({device});
+        this.setState({device}, function () {
+            this.validateFields();
+        });
+    }
+
+    validateFields() {
+        console.log('validatefields');
+        const model = this.state.device.model.trim();
+        const tag = this.state.device.tag.trim();
+        (model.length > 0 && tag.length) ? this.setState({btnDisabled: false}) : this.setState({btnDisabled: true});
     }
     onSubmit() {
         this.props.createDevice(this.state.device);
@@ -151,8 +161,8 @@ class AddDeviceTeamPage extends Component {
                     style={styles.checkbox}
                     id="cable"
                 />
-                <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={this.onSubmit}/>
-                <RaisedButton label="Cancel" type="reset" onClick={this.resetValues} />
+                <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={this.onSubmit} disabled={this.state.btnDisabled}/>
+                <RaisedButton label="Cancel" type="reset" onClick={this.resetValues}/>
             </form>
         </div>
         );

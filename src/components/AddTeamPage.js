@@ -12,7 +12,8 @@ class AddTeamPage extends Component {
             team: {
                 teamId: '',
                 teamName: ''
-            }
+            },
+            btnDisabled:true
         };
     }
     componentWillReceiveProps(newProps) {
@@ -32,10 +33,18 @@ class AddTeamPage extends Component {
         const field = event.target.id;
         const team = this.state.team;
         team[field] = event.target.value;
-        this.setState({team});
+        this.setState({team},function () {
+            this.validateFields();
+        });
     }
     handleClick() {
         this.props.createTeam(this.state.team);
+    }
+    validateFields() {
+        console.log('validatefields');
+        const teamId = this.state.team.teamId.trim();
+        const teamName = this.state.team.teamName.trim();
+        (teamId.length > 0 && teamName.length) ? this.setState({btnDisabled: false}) : this.setState({btnDisabled: true});
     }
     render() {
         return (<div className="AddTeam">
@@ -57,8 +66,8 @@ class AddTeamPage extends Component {
                     id="teamName"
                     onChange={this.handleOnChange}
                     value={this.state.team.teamName}/><br/>
-                <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={this.handleClick}/>
-                <RaisedButton label="Cancel" type="reset" onClick={this.resetValues} />
+                <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}} onClick={this.handleClick} disabled={this.state.btnDisabled}/>
+                <RaisedButton label="Cancel" type="reset" onClick={this.resetValues}/>
             </form>
         </div>);
     }
