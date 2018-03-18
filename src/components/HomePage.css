@@ -10,3 +10,77 @@
 .ToggleWrapper .ToggleInnerWrapper{
   display: inline-block;
 }
+
+.div1{
+    width: 2px;
+    height: 98%;
+    position: absolute;
+    top: 22px;
+    left: 4px;
+    background: #f0f0f0;
+}
+.div2{
+    width: 2px;
+    position: absolute;
+    top: 22px;
+    left: 4px;
+    background: #23e25b;
+}
+.div3{
+  min-height: 20px;
+    float: left;
+    padding: 4px 15px 0 0;
+}
+.circle{
+  background-color: #34e062;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  margin-top: 3px;
+}
+.div4{
+  font-size: 14px;
+    float: left;
+    max-width: 90%;
+    color: #878787;
+}
+
+.userHistory ul {
+  padding-left: 20px;
+}
+.userHistory li{
+    display:flex;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.userHistory li:last-child{
+  margin-bottom: 0px;
+}
+
+.userHistory .info {
+  margin-left: 15px;
+  display: flex;
+}
+.userHistory .line {
+  height: 100%;
+    /* color: red; */
+    /* border: 1px solid red; */
+    top: 13px;
+    position: absolute;
+    width: 2px;
+    left: 4px;
+    /* right: 4px; */
+    background: #23e25b;
+}
+
+.uploadDownload {
+  width:15px;
+  height: 15px;
+  margin-left:5px;
+  margin-right: 5px;
+}
+
+.dateInfo{
+  margin-left:5px;
+}
