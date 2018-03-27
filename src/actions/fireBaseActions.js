@@ -117,10 +117,11 @@ export function signInWithEmailAuthProvider(email, password) {
     };
 }
 
-export function createUserWithEmailAndPassword(email, password) {
+export function createUserWithEmailAndPassword(email, name, contactNo, password) {
     return (dispatch) => {
         dispatch(beginAsyncCall(true));
         return FirebaseApi.createUserWithEmailAndPassword(email, password).then(user => {
+            FirebaseApi.saveUserData(user.uid, email, name, contactNo);
             dispatch(userCreationSuccess(user));
             dispatch(beginAsyncCall(false));
             dispatch(showingSnackBar('User created successfully'));

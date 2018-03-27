@@ -3,8 +3,8 @@ import './App.css';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 //actions
-import {beginAsyncCall} from '../actions/ajaxCallStatusActions';
-import {authInitialized, fireBaseInitError} from '../actions/fireBaseActions';
+import {beginAsyncCall,showingSnackBar} from '../actions/ajaxCallStatusActions';
+import {authInitialized, fireBaseInitError,} from '../actions/fireBaseActions';
 
 //presentational components
 import Loaders from '../components/common/Loaders';
@@ -14,42 +14,31 @@ import Footer from '../containers/Footer';
 import Header from '../containers/Header';
 import SnackBar from '../containers/SnackBar';
 import Dialog from '../containers/Dialog';
+import FirebaseApi from '../api/firebase';
+import * as firebase from 'firebase/firebase-browser';
+import { browserHistory } from 'react-router';
 
 class App extends Component {
-    componentWillReceiveProps(props) {
-        console.log('componentWillReceiveProps', props);
-    // if(!this.props.appInitError.success) {
-    //   this.props.router.push('/error');
-    // }
-    }
-    componentDidUpdate() {
-        //console.log("componentDidUpdate");
-    }
-    componentDidMount() {
-        //console.log("componentDidMount");
-    }
-
     componentWillMount() {
-        //console.log("componentWillMount");
-        // const me = this;
-        // FirebaseApi.initAuth().then(
-        //     user => {
-        //         me.props.actions.authInitialized(user);
-        //     }
-        // ).catch(
-        //     error => {
-        //         me.props.actions.beginAjaxCall(false);
-        //         me.props.actions.appInitError(error);
-        //         console.error('error while initializing Firebase Auth'); // eslint-disable-line no-console
-        //         console.error(error); // eslint-disable-line no-console
-        //     });
+        const me = this;
+        firebase.auth().getRedirectResult().then(function(result) {
+            // The signed-in user info.
+            let user = result.user;
+            if (user) {
+                FirebaseApi.saveUserData(user.uid, user.email, user.displayName, user.phoneNumber);
+                browserHistory.push('/');
+                me.props.actions.showingSnackBar('Login successfull');
+            }
+        }).catch(function(error) {
+            console.log(error);
+            me.props.actions.showingSnackBar('!Oops something went wrong');
+        });
     }
     render() {
-        console.log('render- App.js');
         return (
             <div className="App">
                 <Header/>
-                <Loaders currentStatus={this.props.isLoading ? 'loading' : 'hide'}/>
+                <Loaders currentStatus = {this.props.isLoading ? 'loading' : 'hide'} />
                 {this.props.children}
                 <Dialog/>
                 <SnackBar/>
@@ -71,7 +60,9 @@ function mapDispatchToProps (dispatch) {
         actions: {
             beginAjaxCall: bindActionCreators(beginAsyncCall, dispatch),
             authInitialized: bindActionCreators(authInitialized, dispatch),
-            appInitError: bindActionCreators(fireBaseInitError, dispatch)
+            appInitError: bindActionCreators(fireBaseInitError, dispatch),
+            showingSnackBar: bindActionCreators(showingSnackBar, dispatch)
+
         }
     };
 }
