@@ -9,9 +9,8 @@ class SignUp extends Component {
         super(props);
         this.createUserWithEmailAndPassword = this.createUserWithEmailAndPassword.bind(this);
     }
-    createUserWithEmailAndPassword({email, password}) {
-        console.log(email + password);
-        this.props.actions.createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword({email, name, contactNo ,password}) {
+        this.props.actions.createUserWithEmailAndPassword(email, name, contactNo, password);
     }
     render() {
         return (

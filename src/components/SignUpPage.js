@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import Utils from '../Utils';
 class SignUpPage extends Component {
     constructor(props) {
@@ -14,6 +16,8 @@ class SignUpPage extends Component {
         this.state = {
             user: {
                 email: '',
+                name: '',
+                contactNo: '',
                 password: '',
                 password2: '',
                 confirmPassword: false,
@@ -22,17 +26,15 @@ class SignUpPage extends Component {
         };
     }
     handleOnChange(event) {
-        console.log('handleOnChange');
         const field = event.target.id;
         const user = this.state.user;
         user[field] = event.target.value;
         this.setState({user}, function () {
-            console.log('callback fired');
             this.validateFields();
         });
     }
+    
     handleClick() {
-        console.log(this.state.user);
         this.props.createUserWithEmailAndPassword(this.state.user);
     }
     validateFields() {
@@ -55,16 +57,28 @@ class SignUpPage extends Component {
     resetValues() {
         const user={
             email: '',
+            name: '',
+            contactNo: '',
             password: '',
             password2: ''
         }
         this.setState({user});
     }
     render() {
-        console.log('render');
         return (
             <div className="SignUpForm">
                 <form onSubmit={this.handleClick}>
+                    <TextField
+                        hintText="Name"
+                        floatingLabelText="* Name"
+                        type="text"
+                        fullWidth={true}
+                        id="name"
+                        ref="name"
+                        onChange={this.handleOnChange}
+                        value={this.state.user.name}
+                        required
+                    /><br/>
                     <TextField
                         hintText="email@abc.com"
                         floatingLabelText="* Email"
@@ -74,6 +88,17 @@ class SignUpPage extends Component {
                         ref="email"
                         onChange={this.handleOnChange}
                         value={this.state.user.email}
+                        required
+                    /><br/>
+                    <TextField
+                        hintText="Contact Number"
+                        floatingLabelText="* Contact Number"
+                        type="number"
+                        fullWidth={true}
+                        id="contactNo"
+                        ref="contactNo"
+                        onChange={this.handleOnChange}
+                        value={this.state.user.contactNo}
                         required
                     /><br/>
                     <TextField
@@ -103,7 +128,7 @@ class SignUpPage extends Component {
                     <RaisedButton label="Submit" primary={true} style={{'margin': '12px'}}
                         onClick={this.handleClick} disabled={this.state.btnDisabled} />
                     <RaisedButton label="Cancel" primary={true} style={{'margin': '12px'}}
-                        onClick={this.resetValues}  />    
+                        onClick={this.resetValues} />    
                 </form>
             </div>
         );

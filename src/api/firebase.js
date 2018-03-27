@@ -35,5 +35,14 @@ export default class FireBaseApi {
     static getDatabaseValues(key) {
         return firebase.database().ref(key);
     }
+
+    static saveUserData(userId,email = null,name = null,contactNo = null) {
+        firebase.database().ref('users/' + userId).set({
+            email: email,
+            contactNo :contactNo,
+            name:name
+            //some more user data
+        });
+    }
 }
 
