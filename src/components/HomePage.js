@@ -22,7 +22,7 @@ const HomePage = ({devices}) => (
             </div>
         </div>
         {devices ? devices.map(function (item) {
-            let osVersion = <div style={{"display": "flex","justify-content": "flex-start"}}>
+            let osVersion = <div style={{"display": "flex","justifyContent": "flexStart"}}>
                             <div>{item.osVersion}</div>
                             <RaisedButton label="Submit" primary={true} style={{"marginLeft":"auto","marginRight": "35px"}}  disabled={false} onClick={(e)=>{alert("todo");e.stopPropagation();}}/>
                             </div>;  

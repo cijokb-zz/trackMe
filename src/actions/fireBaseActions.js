@@ -39,7 +39,7 @@ export function authInitializedDone() {
 }
 
 export function authLoggedInSuccess(user) {
-    browserHistory.push('/');
+    //browserHistory.push('/');
     return {
         type: types.AUTH_LOGIN_SUCCESS, user
     };
@@ -97,7 +97,7 @@ export function authLoggedIn(user) {
     return (dispatch) => {
         dispatch(beginAsyncCall(false));
         dispatch(authLoggedInSuccess(user));
-        dispatch(showingSnackBar('Login successfull'));
+        //dispatch(showingSnackBar('Login successfull'));
     };
 }
 
@@ -107,7 +107,9 @@ export function signInWithEmailAuthProvider(email, password) {
         return FirebaseApi.signInWithEmailAndPassword(email, password)
             .then(
                 user => {
+                    dispatch(showingSnackBar('Login successfull'));
                     dispatch(authLoggedIn(user.uid));
+                    browserHistory.push('/');
                 })
             .catch(error => {
                 dispatch(authLoginError(error));
@@ -178,10 +180,6 @@ export function fetchDeviceDetails() {
                 device.key = itemSnap.key;
                 devices.push(device);
             });
-            console.log(devices);
-            // return {
-            //     type: types.FETCH_DEVICE_DETAILS, devices
-            // };
             dispatch(fetchDeviceDetailsSuccess(devices));
         });
     };
