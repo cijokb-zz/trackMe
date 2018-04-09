@@ -10,7 +10,6 @@ class LoginForm extends Component {
         this.signInWithEmailAuthProvider = this.signInWithEmailAuthProvider.bind(this);
     }
     signInWithEmailAuthProvider({email, password}) {
-        console.log(email + password);
         this.props.actions.signInWithEmailAuthProvider(email, password);
     }
     render() {

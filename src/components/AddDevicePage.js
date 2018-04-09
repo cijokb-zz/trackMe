@@ -44,7 +44,6 @@ class AddDeviceTeamPage extends Component {
     }
 
     validateFields() {
-        console.log('validatefields');
         const model = this.state.device.model.trim();
         const tag = this.state.device.tag.trim();
         (model.length > 0 && tag.length) ? this.setState({btnDisabled: false}) : this.setState({btnDisabled: true});

@@ -25,9 +25,7 @@ class HeaderBar extends Component {
         this.handleDrawer();
         this.props.signOut();
     }
-    componentWillReceiveProps(props) {
-        console.log(props);
-    }
+    
     render () {
         const props = this.props;
         const userInfo = props.userInfo;

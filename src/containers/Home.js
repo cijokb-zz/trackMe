@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import HomePage from '../components/HomePage';
-import FirebaseApi from '../api/firebase';
-import {createTeam} from '../actions/userActions';
 import {fetchDeviceDetails} from '../actions/fireBaseActions';
 import {bindActionCreators} from 'redux';
 
@@ -13,21 +11,8 @@ class Home extends Component {
             devices: null
         };
     }
-    componentWillReceiveProps(props) {
-        console.log(props.devices);
-    }
-
+   
     componentDidMount() {
-        // const data = FirebaseApi.getDatabaseValues('devices');
-        // data.on('value', function (snap) {
-        //     const devices = [];
-        //     snap.forEach(function (itemSnap) {
-        //         const device = itemSnap.val();
-        //         device.key = itemSnap.key;
-        //         devices.push(device);
-        //     });
-        //     this.setState({devices: devices});
-        // }.bind(this));
         this.props.actions.fetchDeviceDetails();
     }
 

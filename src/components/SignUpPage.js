@@ -38,7 +38,6 @@ class SignUpPage extends Component {
         this.props.createUserWithEmailAndPassword(this.state.user);
     }
     validateFields() {
-        console.log('validatefields');
         const passCheck = this.comparePassword();
         const emailCheck = this.validateEmail();
         (emailCheck && passCheck) ? this.setState({btnDisabled: false}) : this.setState({btnDisabled: true});

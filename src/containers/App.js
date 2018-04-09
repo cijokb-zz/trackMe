@@ -8,9 +8,6 @@ import {authInitialized, fireBaseInitError,} from '../actions/fireBaseActions';
 
 //presentational components
 import Loaders from '../components/common/Loaders';
-//import HeaderBar from '../components/common/HeaderBar';
-import Footer from '../containers/Footer';
-
 import Header from '../containers/Header';
 import SnackBar from '../containers/SnackBar';
 import Dialog from '../containers/Dialog';
@@ -21,18 +18,23 @@ import { browserHistory } from 'react-router';
 class App extends Component {
     componentWillMount() {
         const me = this;
-        firebase.auth().getRedirectResult().then(function(result) {
-            // The signed-in user info.
-            let user = result.user;
-            if (user) {
-                FirebaseApi.saveUserData(user.uid, user.email, user.displayName, user.phoneNumber);
-                browserHistory.push('/');
-                me.props.actions.showingSnackBar('Login successfull');
-            }
-        }).catch(function(error) {
-            console.log(error);
-            me.props.actions.showingSnackBar('!Oops something went wrong');
-        });
+        try{
+            firebase.auth().getRedirectResult().then(function (result) {
+                // The signed-in user info.
+                let user = result.user;
+                if (user) {
+                    FirebaseApi.saveUserData(user.uid, user.email, user.displayName, user.phoneNumber);
+                    me.props.actions.showingSnackBar('Login successfull');
+                    browserHistory.push('/');
+                }
+            }).catch(function (error) {
+                console.error(error);
+                me.props.actions.showingSnackBar('!Oops something went wrong');
+            });
+        }
+        catch (e) {
+            console.error(e);
+        }
     }
     render() {
         return (

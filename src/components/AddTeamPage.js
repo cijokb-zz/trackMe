@@ -41,7 +41,6 @@ class AddTeamPage extends Component {
         this.props.createTeam(this.state.team);
     }
     validateFields() {
-        console.log('validatefields');
         const teamId = this.state.team.teamId.trim();
         const teamName = this.state.team.teamName.trim();
         (teamId.length > 0 && teamName.length) ? this.setState({btnDisabled: false}) : this.setState({btnDisabled: true});
