@@ -1,15 +1,25 @@
 import React from 'react';
 import AppInitErrorPage from '../components/AppInitErrorPage';
-//import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-//import {fireBaseInitError} from '../actions/fireBaseActions';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 
-const AppInitError = (props) => (
-    <AppInitErrorPage error={props.error}/>
-);
+const AppInitError = (props) => {
+    let cmp = null;
+    if (props && props.error.success === false) {
+        cmp = <AppInitErrorPage error={props.error} />
+    }
+    else {
+        /*
+        redirecting to the Home screen when the user manually navigate to the error page
+        when no errors occured.
+        */
+        browserHistory.push('/');
+    }
+    return cmp;
+};
 
-function mapStateToProps({init}, ownProps) {
+function mapStateToProps({ init }, ownProps) {
     return {
         error: init
     };
