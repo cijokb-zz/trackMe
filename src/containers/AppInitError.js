@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router';
 const AppInitError = (props) => {
     let cmp = null;
     if (props && props.error.success === false) {
-        cmp = <AppInitErrorPage error={props.error} />
+        cmp = <AppInitErrorPage error={props.error} />;
     }
     else {
         /*
