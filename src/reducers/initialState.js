@@ -45,12 +45,10 @@ const initialState = {
     },
     isLoading: false,
     snackBarMsg: {
-        message: '',
-        timeStamp: ''
+        message: ''
     },
     dialogMsg: {
-        message: '',
-        timeStamp: ''
+        message: ''
     },
 };
 
