@@ -30,7 +30,7 @@ const HomePage = ({devices}) => (
                 <Card key={item.key} style={{marginBottom: '5px'}} initiallyExpanded={false}>
                     <CardHeader
                         title={item.model}
-                        subtitle={<div style={{"display":"flex"}}><div>{item.tag}</div><div style={{"color":"#4CAF50","marginLeft":"auto","marginRight": "35px"}}>Avialable</div></div>}
+                        subtitle={<div style={{"display":"flex"}}><div>{item.tag}</div><div style={{"color":"#4CAF50","marginLeft":"auto","marginRight": "35px"}}>Available</div></div>}
                         actAsExpander={true}
                         showExpandableButton={true}
                         avatar={imgAvatar(item.os, item.category)}
