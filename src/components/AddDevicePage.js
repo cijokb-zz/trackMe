@@ -151,7 +151,7 @@ class AddDeviceTeamPage extends Component {
                     checked={this.state.device.adapter}
                     onCheck={this.updateCheck}
                     style={styles.checkbox}
-                    id="Adapter"
+                    id="adapter"
                 />
                 <Checkbox
                     label="Cable"
