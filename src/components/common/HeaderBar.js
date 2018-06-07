@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from './Avatar';
+import Title from './Title';
 import './HeaderBar.css';
 
 class HeaderBar extends Component {
@@ -32,9 +33,9 @@ class HeaderBar extends Component {
         return (
             <div>
                 <AppBar
-                    title="TrackMe"
-                    style={{backgroundColor: '#3F51B5', textAlign: 'center'}}
-                    iconElementRight={<AppMenu/>}
+                    title={<Title title="TrackMe" />}
+                    style={{ backgroundColor: '#3F51B5', textAlign: 'center' }}
+                    iconElementRight={<AppMenu />}
                     onLeftIconButtonTouchTap={this.handleDrawer}
                     showMenuIconButton={!!props.isLogged}
                 />
