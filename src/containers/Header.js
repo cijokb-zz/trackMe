@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import HeaderBar from '../components/common/HeaderBar';
-import {signOut} from '../actions/fireBaseActions';
+import {fetchUserInfo,signOut} from '../actions/fireBaseActions';
 
 // const Header = (props) => (
 //     <HeaderBar userInfo={props.userInfo} signOut={}/>
@@ -23,16 +23,17 @@ export class Header extends Component {
         );
     }
 }
-function mapStateToProps({auth}, props) {
+function mapStateToProps({auth,user}, props) {
     return {
-        userInfo: auth,
+        userInfo: user,
         isLogged: auth.isLogged
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            signOut: bindActionCreators(signOut, dispatch)
+            signOut: bindActionCreators(signOut, dispatch),
+            fetchUserInfo  : bindActionCreators(signOut, dispatch),
         }
     };
 }

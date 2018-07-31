@@ -190,3 +190,25 @@ export function fetchDeviceDetailsSuccess(devices) {
         type: types.FETCH_DEVICE_DETAILS, devices
     };
 }
+
+export function fetchUserInfo(userId) {
+    return (dispatch) => {
+        //dispatch(beginAsyncCall(true));
+        const data = FirebaseApi.getDatabaseValues('users');
+        data.on('value', function (snap) {
+            const devices = [];
+            snap.forEach(function (itemSnap) {
+                const device = itemSnap.val();
+                device.key = itemSnap.key;
+                devices.push(device);
+            });
+            dispatch(fetchUserInfoSuccess(devices));
+        });
+    };
+}
+
+export function fetchUserInfoSuccess(user) {
+    return {
+        type: types.FETCH_USER_DETAILS, user
+    };
+}

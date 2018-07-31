@@ -1,5 +1,5 @@
 import * as firebase from 'firebase/firebase-browser';
-import {firebaseConfig} from '../firebaseConfig';
+import { firebaseConfig } from '../firebaseConfig';
 
 export default class FireBaseApi {
     static initAuth() {
@@ -36,11 +36,13 @@ export default class FireBaseApi {
         return firebase.database().ref(key);
     }
 
-    static saveUserData(userId,email = null,name = null,contactNo = null) {
+    static saveUserData(userId, email = null, name = null, contactNo = null, photoUrl = null, role = "user") {
         firebase.database().ref('users/' + userId).set({
             email: email,
-            contactNo :contactNo,
-            name:name
+            contactNo: contactNo,
+            name: name,
+            role: role,
+            photoUrl: photoUrl
             //some more user data
         });
     }

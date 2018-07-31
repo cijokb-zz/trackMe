@@ -23,7 +23,7 @@ class App extends Component {
                 // The signed-in user info.
                 let user = result.user;
                 if (user) {
-                    FirebaseApi.saveUserData(user.uid, user.email, user.displayName, user.phoneNumber);
+                    FirebaseApi.saveUserData(user.uid, user.email, user.displayName, user.phoneNumber,user.photoURL);
                     me.props.actions.showingSnackBar('Login successfull');
                     browserHistory.push('/');
                 }
