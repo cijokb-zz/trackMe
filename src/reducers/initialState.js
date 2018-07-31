@@ -41,7 +41,13 @@ const initialState = {
     },
     devices: [],
     user: {
-
+        photoURL: null,
+        name: null,
+        email: null,
+        role: null,
+        contactNo: null,
+        userId: null,
+        teamId: null
     },
     isLoading: false,
     snackBarMsg: {
